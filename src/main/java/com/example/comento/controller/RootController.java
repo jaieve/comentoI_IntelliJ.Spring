@@ -51,8 +51,8 @@ public class RootController {
 
     // PutMapping은 @RequestMapping(method = RequestMethod.PUT) 의 단축어이다.
     @PutMapping("/api/post/{id}")
-    public ResponseEntity<? extends BasicResponse> updatePost(@PathVariable Long id, @RequestBody PostDTO modified_post) {
-        if(!postService.updatePost(id, modified_post)) {
+    public ResponseEntity<? extends BasicResponse> updatePost(@PathVariable Long id, @RequestBody PostDTO updatePost) {
+        if(!postService.updatePost(id, updatePost)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("찾는 게시글이 없습니다. id를 확인하세요."));
         }

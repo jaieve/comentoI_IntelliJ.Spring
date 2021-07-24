@@ -24,7 +24,7 @@ public class PostService {
         String content = postDTO.getContent();
         String writer = postDTO.getWriter();
 
-        Post post = new Post();
+        Post post = Post.builder().build();
         post.setTitle(title);
         post.setContent(content);
         post.setWriter(writer);
@@ -50,10 +50,6 @@ public class PostService {
             if(!update.getTitle().isEmpty()){ post.setTitle(update.getTitle()); }
             if(!update.getContent().isEmpty()){ post.setContent(update.getContent()); }
             if(!update.getWriter().isEmpty()){ post.setWriter(update.getWriter()); }
-
-            Long datetime = System.currentTimeMillis();
-            Timestamp timestamp = new Timestamp(datetime);
-            post.setUpdateAt(timestamp);
 
             postRepository.save(post);
             return true;
