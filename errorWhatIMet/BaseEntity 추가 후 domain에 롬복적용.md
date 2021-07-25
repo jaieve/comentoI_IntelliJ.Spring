@@ -11,7 +11,7 @@
 - EqualsAndHashCode : hascode 와 equals 메소드를 생성
 - Data : 다음 어노테이션을 모두 한번에 처리 한다. ToString + EqualsAndHashCode + Getter(모든 필드) + Setter(모든 필드-final로 성언되지 않은) + RequiredArgsConstructor
 - Builder : 다수의 필드를 가지는 복잡한 클래스의 경우, 생성자 대신에 빌더를 사용하면 자동으로 해당 클래스에 빌더를 추가
-    - @Singular 어노테이션을 선언해주면 모든 원소를 한 번에 넘기지 않고 원소를 하나씩 추가할 수 있
+    - @Singular 어노테이션을 선언해주면 모든 원소를 한 번에 넘기지 않고 원소를 하나씩 추가할 수 있음
   ```
      @Builder
     public class User {
