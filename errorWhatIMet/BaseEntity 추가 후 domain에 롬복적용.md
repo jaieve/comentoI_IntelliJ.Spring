@@ -1,6 +1,6 @@
 # 롬복이란?
 - 자바에서 Model(DTO, VO, Domain) Object 를 만들때, 멤버필드(프로퍼티)에 대한 Getter/Setter, ToString과 멤버필드에 주입하는 생성자를 만드는 코드 등 불필요하게 반복적으로 만드는 코드를 어노테이션을 통해 줄여 주는 라이브러리
-- 사용방법 : Gradle을 사용하는 경우 => build.gradle에 Dependency 추가  `provided 'org.projectlombok:lombok:1.16.20'
+- 사용방법 : Gradle을 사용하는 경우 => build.gradle에 Dependency 추가  ```provided 'org.projectlombok:lombok:1.16.20'```
 
 ### 롬복이 제공하는 어노테이션
 - AllArgsConstructor : 모든 매개변수를 사용하여 생성자 추가
