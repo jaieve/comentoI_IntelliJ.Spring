@@ -16,16 +16,11 @@ public class PostService {
     private PostRepository postRepository;
 
     public Post writePost(PostDTO postDTO) {
-        String title = postDTO.getTitle();
-        String content = postDTO.getContent();
-        String writer = postDTO.getWriter();
-
         Post post = Post.builder()
                         .title(postDTO.getTitle())
                         .writer(postDTO.getWriter())
                         .content(postDTO.getContent())
                         .build();
-
         return postRepository.save(post);
     }
 
