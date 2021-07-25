@@ -1,8 +1,7 @@
-package com.example.comento.controller.exception;
+package com.example.comento.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.http.HttpStatus;
 
 @Data //getter+setter+ ...
 @EqualsAndHashCode(callSuper = false)

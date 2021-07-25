@@ -2,21 +2,10 @@ package com.example.comento.controller;
 
 import com.example.comento.controller.dto.PostDTO;
 import com.example.comento.domain.Post;
-import com.example.comento.response.BasicResponse;
-import com.example.comento.response.CommonResponse;
-import com.example.comento.response.ErrorResponse;
 import com.example.comento.service.PostService;
-import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Basic;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class RootController {
