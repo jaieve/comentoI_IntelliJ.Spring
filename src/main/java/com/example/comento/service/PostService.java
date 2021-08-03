@@ -6,6 +6,8 @@ import com.example.comento.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -21,20 +23,16 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    public List<Post> readPosts() {
+        return postRepository.findAll();
+    }
+
     public Post readPost(Long id){
         // 추가할 로직
         // 1. exception 추가
         // 2. 조회수 증가
         return postRepository.findById(id).orElseThrow();
     }
-
-//    public Post readPost(Long id) {
-//        Post dbPost = postRepository.findById(id).orElse(null);
-//        Post post =  dbPost.get();
-//        post.setViews(post.getViews()+1);
-//        postRepository.save(post);
-//        return postRepository.findById(id).orElse(null);
-//    }
 
     public Post updatePost(Long id, PostDTO postDTO){
         String title = postDTO.getTitle();

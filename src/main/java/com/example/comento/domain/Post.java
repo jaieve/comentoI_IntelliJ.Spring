@@ -5,8 +5,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
-
-
 @EqualsAndHashCode(callSuper = false)
 @Getter @Setter
 @NoArgsConstructor //Builder와 함께 사용하려면 AllArgsConstructor도 함께 사용해야 함.
@@ -35,8 +33,10 @@ public class Post extends BaseEntity{
     //@Column에서 nullable=false를 제거해도, @NotNull이 붙어있으면 DDL 생성 시 not null로 생성된다
     @Column(length=512, nullable = false)
     private String content;
+
 //    @Convert(converter = TypeJpaConverter.class)
 //    private Type type;
+
     @Column(nullable = true, insertable = false)
     private String type = "community";
 
@@ -47,6 +47,7 @@ public class Post extends BaseEntity{
     @Column(insertable = false)
     @ColumnDefault("'0'")
     private Long likes;
+
     @Builder
     public Post(Long id, String writer, String title, String content, String type, Long views, Long likes) {
         this.id = id;

@@ -6,6 +6,8 @@ import com.example.comento.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class RootController {
@@ -15,6 +17,11 @@ public class RootController {
 
     @GetMapping("/hello")
     public String hello() { return "Hello Spring";}
+
+    @GetMapping("/api/post")
+    public List<Post> readPosts() {
+        return  postService.readPosts();
+    }
 
     @GetMapping("/api/post/{id}")
     public Post readPost(@PathVariable Long id){

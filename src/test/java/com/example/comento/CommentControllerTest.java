@@ -35,23 +35,22 @@ class CommentControllerTest {
 	void setup() {
 		this.mockMvc = MockMvcBuilders
 				.webAppContextSetup(ctx)
-				.addFilters(new CharacterEncodingFilter("UTF-8",true))
+				.addFilters(new CharacterEncodingFilter("UTF-8", true))
 				.alwaysDo(print())
 				.build();
 	}
 
-	String title = "타이틀 테스트";
-	String content = "테스트 콘텐츠";
-	String writer = "홍서연";
-
 	@Test
-	void contextLoads(){
+	void contextLoads() {
 		System.out.println("Hello! This is test code");
 	}
 
-//	@Test
+	//	@Test
 	void testWritingPost() throws Exception {
 		//given
+		String title = "타이틀 테스트";
+		String content = "테스트 콘텐츠";
+		String writer = "홍서연";
 		PostDTO postDTO = PostDTO.builder().title(title).content(content).writer(writer).build();
 		String data = JacksonUtil.toJson(postDTO);
 		//when
@@ -71,23 +70,27 @@ class CommentControllerTest {
 		//given
 		testWritingPost();
 
-		mockMvc.perform(get("/api/post{id}", 8L))
+		String title = "타이틀 테스트";
+		String content = "테스트 콘텐츠";
+		String writer = "홍서연";
+
+		mockMvc.perform(get("/api/post/{id}", 6L))
 				.andExpect(status().is(HttpStatus.OK.value()))
 				.andExpect(jsonPath("$.title").value(title))
 				.andExpect(jsonPath("$.content").value(content))
 				.andExpect(jsonPath("$.writer").value(writer));
 	}
+
 	@Test
-	void testUpdatingPost() throws Exception{
+	void testUpdatingPost() throws Exception {
 		//given
-		Post post = postService.readPost(5L);
-		PostDTO postDTO = PostDTO.builder().title("0725 title update").content("0725 content update").writer(post.getWriter()).build();
+		Post post = postService.readPost(6L);
+		PostDTO postDTO = PostDTO.builder().title("0729 title update").content("0729 content update").writer(post.getWriter()).build();
 		String data = JacksonUtil.toJson(postDTO);
 		//when
-		//when
-		mockMvc.perform(put("/api/post/{id}",5L)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(data))
+		mockMvc.perform(put("/api/post/{id}", 6L)
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(data))
 				.andExpect(status().is(HttpStatus.OK.value()))
 				.andExpect(jsonPath("$.title").value(postDTO.getTitle()))
 				.andExpect(jsonPath("$.content").value(postDTO.getContent()))
@@ -95,35 +98,26 @@ class CommentControllerTest {
 		//then
 
 	}
+
 	@Test
-	void testDeletingPost() throws Exception{
+	void testReadPosts() throws Exception {
+		//given
+		//when
+		mockMvc.perform(get("/api/post")
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().is(HttpStatus.OK.value()))
+				.andDo(print());
+		//then
+	}
+
+	@Test
+	void testDeletingPost() throws Exception {
 		//given
 
 		//when
-		mockMvc.perform(delete("/api/post/{id}", 9L));
+		mockMvc.perform(delete("/api/post/{id}", 6L));
 
 		//then
 
 	}
-//	@Autowired
-//	private WebApplicationContext ctx;
-
-//	@BeforeEach
-//	void setup(){
-//		this.mockMvc = MockMvcBuilders
-//				.webAppContextSetup(ctx)
-//				.addFilters(new CharacterEncodingFilter("UTF-8", true))
-//				.alwaysDo(print())
-//				.build();
-//	}
-
-//	@Test
-//	void hello리턴() throws Exception {
-//		String hello = "Hello Spring";
-//
-//		mockMvc.perform(get("/hello"))
-//				.andExpect(status().isOk())
-//				.andExpect(content().string(hello));
-//
-//	}
 }
